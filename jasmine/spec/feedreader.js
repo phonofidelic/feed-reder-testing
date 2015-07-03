@@ -31,7 +31,7 @@ $(function() {
          * in the allFeeds object and ensures it has a URL defined
          * and that the URL is not empty.
          */
-         it('not to be empty and to have valid URLs', function() {
+         it('have valid URLs', function() {
             for (var i = 0; i < allFeeds.length; i ++) {
                 expect(allFeeds[i].url.indexOf('http://') > -1).toBe(true);
             }
@@ -41,6 +41,11 @@ $(function() {
          * in the allFeeds object and ensures it has a name defined
          * and that the name is not empty.
          */
+         it('have valid names', function() {
+            for (var i = 0; i < allFeeds.length; i ++) {
+                expect(allFeeds[i].name > '').toBe(true);
+            }
+         });
     });
 
 
