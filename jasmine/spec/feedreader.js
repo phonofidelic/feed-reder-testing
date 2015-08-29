@@ -43,7 +43,7 @@ $(function() {
     });
 
     // Test form menu functionality
-    describe('The menu', function() {
+    describe('The Menu', function() {
 
         // Check that the menu is hedden by checking for
         // the 'menu-hidden' class name
@@ -84,12 +84,12 @@ $(function() {
     });
 
     describe('New Feed Selection', function() {
+        var content1 = $('.feed').html();
 
         // Set up asynchronus support
         beforeEach(function(done) {
             setTimeout(function() {
                 loadFeed(0, function() {
-                    var content1 = $('.feed').html();
                     loadFeed(1, function() {
                         done();
                     });
