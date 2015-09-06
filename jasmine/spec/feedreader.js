@@ -77,14 +77,14 @@ $(function() {
         });
 
         // Check that at least one entry element has been loaded '.feed'
-        it('should load with at least one .entry element', function(done) {
+        it('should load with at least one .entry element', function() {
             expect(entries.children().length).toBeGreaterThan(0);
-            done();
         });
     });
 
     describe('New Feed Selection', function() {
-        var content1 = $('.feed').html();
+
+        var content1;
 
         // Set up asynchronus support
         beforeEach(function(done) {
@@ -94,11 +94,15 @@ $(function() {
                         done();
                     });
                 });
+
+                // After loadFeed(0) is called, set conten1
+                content1 = $('.feed').html();
             }, 500);
         });
 
         it('should load new content', function(done) {
-            // assign new content to content2
+
+            // assign new content to content2 after loadFeed(1) is called
             var content2 = $('.feed').html();
 
             // compare content1 to content2
