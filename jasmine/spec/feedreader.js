@@ -54,31 +54,35 @@ $(function() {
         // Check that the 'menu-hidden'class name toggles on/off
         // when the menu icon is clicked
         it('should appear when the menu icon is clicked', function() {
-            $('body').toggleClass('menu-hidden');
+
+            // "Click" menu icon
+            $('.menu-icon-link').click();
 
             expect(document.body.className).toBe('');
         });
 
         it('should hide when clicked again', function() {
-            $('body').toggleClass('menu-hidden');
+
+            // "Click" again
+            $('.menu-icon-link').click();
 
             expect(document.body.className).toBe('menu-hidden');
         });
     });
 
     describe('Initial Entries', function() {
-        var entries = $('.feed');
+        // var entries = $('.feed');
 
-        // Set up Jasmin asynchronus support
+        // Delay test until loadFeed(0) is called
         beforeEach(function(done) {
-            setTimeout(function() {
+            loadFeed(0, function(){
                 done();
-            }, 500);
+            });
         });
 
         // Check that at least one entry element has been loaded '.feed'
         it('should load with at least one .entry element', function() {
-            expect(entries.children().length).toBeGreaterThan(0);
+            expect($('.feed').find('.entry').length).toBeGreaterThan(0);
         });
     });
 
@@ -88,16 +92,14 @@ $(function() {
 
         // Set up asynchronus support
         beforeEach(function(done) {
-            setTimeout(function() {
-                loadFeed(0, function() {
-                    loadFeed(1, function() {
-                        done();
-                    });
-                });
+            loadFeed(0, function() {
 
                 // After loadFeed(0) is called, set conten1
                 content1 = $('.feed').html();
-            }, 500);
+                loadFeed(1, function() {
+                    done();
+                });
+            });
         });
 
         it('should load new content', function(done) {
